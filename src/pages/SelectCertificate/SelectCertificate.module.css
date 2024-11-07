@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 100px auto 0;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.select {
+  max-width: 30vw;
+}
