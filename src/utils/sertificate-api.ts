@@ -1,3 +1,5 @@
+import { ICertificate } from "../types/types";
+
 const URL_API: string = "https://sycret.ru/service/api/api";
 const API_KEY: string = "011ba11bdcad4fa396660c2ec447ef14";
 
@@ -5,7 +7,7 @@ const checkResponse = <T>(res: Response): Promise<T> => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const fetchCertificates = async () => {
+export const fetchCertificates = async (): Promise<ICertificate[]> => {
   const methodName = "OSGetGoodList";
 
   // Строим параметры для запроса
@@ -26,7 +28,7 @@ export const fetchCertificates = async () => {
     const data = await checkResponse<{
       result: number;
       resultdescription: string;
-      data: any[];
+      data: ICertificate[];
     }>(response);
 
     console.log("Ответ от сервера:", data);
