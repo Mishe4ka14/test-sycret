@@ -50,6 +50,7 @@ module.exports = {
     static: "./dist",
     port: 3000,
     open: true,
+    historyApiFallback: true,
     proxy: [
       {
         context: ["/service/api/api"], // указываем пути, которые проксируем

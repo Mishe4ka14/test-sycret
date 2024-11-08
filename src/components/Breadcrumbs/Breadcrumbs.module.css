@@ -1,0 +1,12 @@
+.breadcrumbs {
+  display: flex;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.crumb {
+  list-style-type: none;
+}

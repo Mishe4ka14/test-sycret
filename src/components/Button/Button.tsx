@@ -1,13 +1,15 @@
 import React, { useMemo } from "react";
-import * as styles from "./CustomButton.module.css";
+import * as styles from "./Button.module.css";
 
-interface ICustomButtonProps {
+interface IButtonProps {
   onClick?: () => void;
   label: string;
-  size?: "small" | "medium" | "large";
+  size?: "small" | "large";
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-const CustomButton: React.FC<ICustomButtonProps> = React.memo(
+const Button: React.FC<IButtonProps> = React.memo(
   ({ onClick, label, size }) => {
     return (
       <button
@@ -22,4 +24,4 @@ const CustomButton: React.FC<ICustomButtonProps> = React.memo(
   }
 );
 
-export default CustomButton;
+export default Button;

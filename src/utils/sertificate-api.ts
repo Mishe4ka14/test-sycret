@@ -10,7 +10,6 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 export const fetchCertificates = async (): Promise<ICertificate[]> => {
   const methodName = "OSGetGoodList";
 
-  // Строим параметры для запроса
   const params = new URLSearchParams({
     ApiKey: API_KEY,
     MethodName: methodName,
@@ -40,6 +39,65 @@ export const fetchCertificates = async (): Promise<ICertificate[]> => {
     }
   } catch (error) {
     console.error("Ошибка при получении сертификатов:", error);
+    throw error;
+  }
+};
+
+export const sendCertificateData = async (
+  selectedCertificate: ICertificate,
+  name: string,
+  phone: string,
+  email: string,
+  message?: string
+) => {
+  const apiKey = "011ba11bdcad4fa396660c2ec447ef14";
+  const methodName = "OSSale";
+
+  if (!selectedCertificate) {
+    console.error("Сертификат не выбран.");
+    return;
+  }
+
+  // параметры для запроса
+  const params = new URLSearchParams({
+    ApiKey: apiKey,
+    MethodName: methodName,
+    Id: selectedCertificate.ID.toString(),
+    TableName: selectedCertificate.TABLENAME,
+    PrimaryKey: selectedCertificate.PRIMARYKEY,
+    Price: selectedCertificate.PRICE.toString(),
+    Summa: selectedCertificate.SUMMA.toString(),
+    ClientName: name,
+    Phone: phone,
+    Email: email,
+    PaymentTypeId: "2",
+    UseDelivery: "0",
+    IsGift: "0",
+    MsgText: message || "",
+    PName: "",
+    PPhone: "",
+  });
+
+  const urlWithParams = `https://sycret.ru/service/api/api?${params.toString()}`;
+  console.log(urlWithParams);
+  try {
+    console.log("Запрос URL:", urlWithParams);
+
+    const response = await fetch(urlWithParams, {
+      method: "GET",
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("Сертификат успешно сохранен на сервере", data);
+      return data;
+    } else {
+      console.error("Ошибка при отправке данных на сервер:", data);
+      throw new Error("Ошибка при отправке данных на сервер");
+    }
+  } catch (error) {
+    console.error("Ошибка при запросе к серверу:", error);
     throw error;
   }
 };

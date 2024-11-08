@@ -1,0 +1,47 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8vh;
+  margin-left: 8%;
+
+  @media (max-width: 768px) {
+    margin: 10% 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.form {
+  margin-top: 20px;
+  max-width: 30vw;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+
+  @media (max-width: 768px) {
+    max-width: none;
+    width: 450px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+}
+
+.errorMessageBlock {
+  font-size: 22px;
+}
+
+.text {
+  font-size: 22px;
+  max-width: 50%;
+
+  @media (max-width: 768px) {
+    max-width: 80%;
+  }
+}
